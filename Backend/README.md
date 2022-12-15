@@ -5,4 +5,7 @@ This is a Backend application meant to be deployed easily for future fun project
 `npm run dev` to run the application.
 
 ## Critical Dependencies
+* `nodemon`: To run the server and watch files.
 * `express`: To provide basic backend services.
+* `node-parser`: provides simplified JSON body parsing.
+
