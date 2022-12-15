@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from 'express';
 
-export const ExampleController = () => {
-    function defaultMethod(){
+class ExampleController{
+    defaultMethod(){
         return{
             text: "Hello"
         };
@@ -9,6 +9,14 @@ export const ExampleController = () => {
 }
 
 export class ExampleRouter{
-    const router = Router();
+    router: Router;
+    controller: ExampleController;
 
+    constructor(){
+        const router = Router();
+        const controller = new ExampleController();
+        router.get('/', (req: Request, res: Response, next: NextFunction) =>{
+            res.status(200).json(controller.defaultMethod());
+        });
+    }
 }

@@ -1,17 +1,17 @@
 import dotenv from 'dotenv';
 import express from 'express';
 
-const App = () => {
-	//Get stuff from env variables.
-	dotenv.config({
-		path: '.env'
-	});
+// load the environment variables from the .env file
+dotenv.config({
+  path: '.env'
+});
 
-
-	const expressApp = express();
-	//Make server listen on some port
-	const port = process.env.APP_PORT;
-	expressApp.listen(port, () => console.log(`Running on port ${port}`));
+export class Server {
+	app = express();
 }
 
-export default App;
+// initialize server app
+const server = new Server();
+const port = process.env.APP_PORT;
+// make server listen on some port
+server.app.listen(port, () => console.log(`Listening on port ${port}`));
