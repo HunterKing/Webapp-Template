@@ -9,6 +9,9 @@ export const PostGet = () => {
     //For more information on hooks generall, check out:
     //https://reactjs.org/docs/hooks-intro.html
     const [postData, setPostData] = useState("");
+    const fetchUrl = 'http://localhost:'
+    const fetchPort = '5000'
+    const fetchEndpoint = '/test'
 
     function handlePostData(e: any){
         setPostData(e?.target?.value);
@@ -18,31 +21,42 @@ export const PostGet = () => {
         console.log(postData);
     };
 
+    function makeBody(){
+        return(
+            {
+                "data": postData
+            }
+        );
+    }
+
     function handlePost(){
         console.log("POST pressed!\nPOST data currently is:");
         console.log(postData);
 
         //Actually do a post;
-        // fetch('url', {
-        //     method: 'POST',
-        //     headers: {
-        //         accept: 'application.json',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: {},
-        //     cache: 'default'
-        // });
+        const response = fetch((fetchUrl + fetchPort + fetchEndpoint), {
+            method: 'POST',
+            headers: {
+                accept: 'application.json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(makeBody()),
+            cache: 'default'
+        });
 
+        console.log(response);
     };
 
     function handleGet(){
         console.log("GET pressed!");
 
         //Actually do a get;
-        // fetch('url', {
-        //     method: 'GET',
-        //     cache: 'default'
-        // });
+        const response = fetch((fetchUrl + fetchPort + fetchEndpoint), {
+            method: 'GET',
+            cache: 'default'
+        });
+
+        console.log(response);
     };
 
     return(
